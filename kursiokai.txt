@@ -1,3 +1,0 @@
-Pavarde		Vardas		ND1  ND2  ND3  ND4  ND5  Egzaminas
-Arvydas		Sabonis		7    4    5    8    9    7
-Rimas		Kurtinaitis	4    8    6    10   4    10
