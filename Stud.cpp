@@ -53,9 +53,17 @@ double medianResult(vector<int> nd, int egz){
     else return nd[n / 2]*0.4+egz*0.6;
 }
 
-void output(vector<Stud> vec, string method){
+bool compareStud(Stud &a, Stud &b){
+    if(a.name != b.name)
+        return a.name < b.name;
+    else
+        return a.surname < b.surname;
+}
+
+void output(vector<Stud> &vec, string method){
     cout << std::left << setw(20) << "Vardas" << setw(20) << "Pavarde" << "Galutinis ("<< method <<")\n";
-    cout << "------------------------------------------------------------\n";    
+    cout << "------------------------------------------------------------\n";
+    std::sort(vec.begin(), vec.end(), compareStud);
     if(method == "Vid."){
         for (auto &&Stud : vec)
             cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
@@ -66,4 +74,5 @@ void output(vector<Stud> vec, string method){
             cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
             << std::fixed << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
     }
+    cout << "------------------------------------------------------------\n";
 }
