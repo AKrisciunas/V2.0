@@ -58,7 +58,7 @@ bool compareStud(Stud &a, Stud &b){
         return a.name < b.name;
     else
         return a.surname < b.surname;
-}
+}   
 
 void output(vector<Stud> &vec, string method){
     cout << std::left << setw(20) << "Vardas" << setw(20) << "Pavarde" << "Galutinis ("<< method <<")\n";

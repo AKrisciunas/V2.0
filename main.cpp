@@ -15,8 +15,18 @@ int main()
 
     //If reading data from file, program will find the number of homework results automatically
     if(choice1 != '2'){
-        cout<<"How much homework results per student: \n";
-        cin>>n;    
+        try
+        {
+            cout<<"How much homework results per student: \n";
+            cin>>n;    
+
+            if (n==0)       //division by 0 in averageResult() function
+                throw;
+        }
+        catch(const std::exception& e)
+        {
+            return 0;
+        }
     }
 
     char end;
