@@ -1,20 +1,44 @@
 #include "Stud.h"
 #include "Mylib.h"
 
+bool inputInteger(int &value) {
+    cin >> value;
+    if (cin.fail()) {
+        cin.clear(); // Clear the fail state
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+        return false;
+    }
+    return true; 
+}
+
 void input(Stud &Local, int n){
     cout<<"Input Name: ";
     cin >> Local.name;
     cout <<"Surname: ";
     cin >> Local.surname;
-    cout << n << " homework results: ";
     int temp;
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        Local.nd.push_back(temp);
+        while (true) {
+            cout << "Homework " << (i + 1) << ": "; 
+            if (inputInteger(temp)) { // Function checks if temp is an integer
+                Local.nd.push_back(temp); 
+                break;
+            } else {
+                cout << "Invalid input. Please enter a number.\n"; 
+            }
+        }
     }
     cout << "Exam: ";
-    cin >> Local.egz;
+    while (true) {
+        if (inputInteger(temp)) {
+            Local.egz = temp; 
+            break;
+        } else {
+            cout << "Invalid input. Please enter a number.\n"; 
+        }
+    }
+    
 }
 
 void inputRandom(Stud &Local, int n){

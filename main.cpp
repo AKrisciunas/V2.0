@@ -17,7 +17,7 @@ int main()
     if(choice1 != '2'){
         try
         {
-            cout<<"How much homework results per student: \n";
+            cout<<"How much homework results per student: ";
             cin>>n;    
 
             if (n==0)       //division by 0 in averageResult() function
