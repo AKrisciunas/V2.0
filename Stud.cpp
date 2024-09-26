@@ -54,16 +54,16 @@ double medianResult(vector<int> nd, int egz){
 }
 
 void output(vector<Stud> vec, string method){
-    cout << std::left << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis ("<< method <<")\n";
+    cout << std::left << setw(20) << "Vardas" << setw(20) << "Pavarde" << "Galutinis ("<< method <<")\n";
     cout << "------------------------------------------------------------\n";    
     if(method == "Vid."){
         for (auto &&Stud : vec)
-            cout << std::left << Stud.name << setw(15) << Stud.surname << setw(15) << std::fixed 
-            << std::setprecision(2) << averageResult(Stud.nd, Stud.egz) <<"\n";
+            cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
+            << std::fixed << std::setprecision(2) << averageResult(Stud.nd, Stud.egz) <<"\n";
     }
     else{
         for (auto &&Stud : vec)
-            cout << std::left << Stud.name << setw(15) << Stud.surname << setw(15) << std::fixed 
-            << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
+            cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
+            << std::fixed << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
     }
 }
