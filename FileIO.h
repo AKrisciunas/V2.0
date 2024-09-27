@@ -4,6 +4,6 @@
 #include "Mylib.h"
 #include "Stud.h"
 
-void readFile(vector<Stud> &S);
+void readFile(vector<Stud> &S, string fileName);
 
 #endif

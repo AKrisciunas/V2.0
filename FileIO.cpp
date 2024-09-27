@@ -2,9 +2,9 @@
 #include "Stud.h"
 #include <fstream>
 
-void readFile(vector<Stud> &Vec){
+void readFile(vector<Stud> &Vec, string fileName){
     try {
-        std::ifstream input("kursiokai.txt");
+        std::ifstream input(fileName);
 
         if (!input.is_open()) {
             throw std::runtime_error("Failed to open file");

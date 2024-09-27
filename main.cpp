@@ -31,8 +31,12 @@ int main()
 
     char end;
     Stud S;
-    if(choice1 == '2')
-        readFile(V1);
+    string fileName;
+    if(choice1 == '2'){
+        cout<<"Write file directory: ";
+        cin>>fileName;
+        readFile(V1, fileName);
+    }
     else
     {
         while (true)
