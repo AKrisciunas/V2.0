@@ -1,5 +1,6 @@
 #include "Stud.h"
 #include "Mylib.h"
+#include "FileIO.h"
 
 bool inputInteger(int &value) {
     cin >> value;
@@ -90,4 +91,37 @@ void output(vector<Stud> &vec, string method){
             << std::fixed << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
     }
     cout << "------------------------------------------------------------\n";
+}
+
+bool compareStudAverage(Stud &a, Stud &b){
+    return averageResult(a.nd, a.egz) < averageResult(b.nd, b.egz);
+}   
+bool compareStudMedian(Stud &a, Stud &b){
+    return medianResult(a.nd, a.egz) < medianResult(b.nd, b.egz);
+}   
+bool averageAt5(Stud &a) {return averageResult(a.nd, a.egz) >= 5.0;}
+
+bool medianAt5(Stud &a) {return medianResult(a.nd, a.egz) >= 5.0;}
+
+void sortToFile(vector<Stud> &vec, string method, int countND){
+    writeFile(vec, "output.txt", countND);
+    vector<Stud>::iterator iter;
+    if (method == "Med."){
+        std::sort(vec.begin(), vec.end(), compareStudMedian);
+        iter = std::find_if(vec.begin(), vec.end(), medianAt5);
+    } 
+    else {
+        std::sort(vec.begin(), vec.end(), compareStudAverage);
+        iter = std::find_if(vec.begin(), vec.end(), averageAt5);
+    }
+    
+    vector<Stud> below5(std::distance(vec.begin(), iter));
+    vector<Stud> aboveOrEqual5(std::distance(iter, vec.end()));
+
+    below5.assign(vec.begin(), iter);
+    aboveOrEqual5.assign(iter, vec.end()); 
+
+    writeFile(below5, "nelaimingi.txt", countND);
+    writeFile(aboveOrEqual5, "protingi.txt", countND);
+    
 }

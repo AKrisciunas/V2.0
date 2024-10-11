@@ -46,12 +46,13 @@ int main()
         V1.reserve(generateCount);
         for (int i = 0; i < generateCount; i++)
         {
-           S.name = "Vardas" + std::to_string(i);
-           S.surname = "Pavarde" + std::to_string(i);
+           S.name = "Vardas" + std::to_string(i+1);
+           S.surname = "Pavarde" + std::to_string(i+1);
            inputRandom(S, n);
            V1.push_back(S);
+           empty(S);
         }
-        writeFile(V1, "output.txt", n);
+        sortToFile(V1, calculationMethod, n);
     }
     else{
         while (true)

@@ -44,21 +44,21 @@ void readFile(vector<Stud> &Vec, string fileName){
 
 void writeFile(vector<Stud> V, string fileName, int countND) {
     std::ostringstream buffer;
+    buffer << std::left << setw(20) << "Vardas" << setw(20) << "Pavarde"; 
+    for (int i = 0; i < countND; i++) buffer << setw(20) << "ND" + std::to_string(i+1);
+    buffer << "Egz.\n";    
     for (const auto& stud : V) {
-        buffer << stud.name << " " << stud.surname << " ";
-        for (int i = 0; i < countND; i++)
-        {
-            buffer << stud.nd.at(i)<< " ";
-        }   
-        buffer << stud.egz << "\n";
+        buffer << setw(20) << stud.name << setw(20) << stud.surname << " ";
+        for (int i = 0; i < countND; i++)   buffer << setw(20) << stud.nd.at(i)<< " ";   
+        buffer << setw(20) << stud.egz << "\n";
     }
 
     std::ofstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Error: Could not open file " << fileName << "\n";
+        std::cerr << "Error: Could not open file\n";
         return;
     }
     file << buffer.str();  
     file.close();
-    
+
 }
