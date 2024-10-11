@@ -36,7 +36,29 @@ void readFile(vector<Stud> &Vec, string fileName){
             iss >> S.egz;
             Vec.push_back(S);
         }
+        input.close();
     } catch (const std::runtime_error& e) {
         std::cerr << "Error: " << e.what() << "\n";
     }
+}
+
+void writeFile(vector<Stud> V, string fileName, int countND) {
+    std::ostringstream buffer;
+    for (const auto& stud : V) {
+        buffer << stud.name << " " << stud.surname << " ";
+        for (int i = 0; i < countND; i++)
+        {
+            buffer << stud.nd.at(i)<< " ";
+        }   
+        buffer << stud.egz << "\n";
+    }
+
+    std::ofstream file(fileName);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file " << fileName << "\n";
+        return;
+    }
+    file << buffer.str();  
+    file.close();
+    
 }

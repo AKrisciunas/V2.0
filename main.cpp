@@ -6,7 +6,7 @@
 int main()
 {
     vector<Stud> V1;
-    char temp, choice1, choice2, choice3;
+    char temp, choice1, choice2;
     int n;
     cout<<"(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file \n(3) - Generate random data to file\n: ";
     cin>>choice1;
@@ -29,21 +29,37 @@ int main()
             return 0;
         }
     }
-
-    char end;
-    Stud S;
     string fileName;
+    Stud S;
+    S.nd.reserve(n);
+    char end;
+    int generateCount;
     if(choice1 == '2'){
         cout<<"Write file directory: ";
         cin>>fileName;
         readFile(V1, fileName);
+        output(V1, calculationMethod);
     }
     else if(choice1 == '3'){
-        //add outputFile();
+        cout<<"How much students to generate: ";
+        cin>>generateCount;
+        V1.reserve(generateCount);
+        for (int i = 0; i < generateCount; i++)
+        {
+           S.name = "Vardas" + std::to_string(i);
+           S.surname = "Pavarde" + std::to_string(i);
+           inputRandom(S, n);
+           V1.push_back(S);
+        }
+        writeFile(V1, "output.txt", n);
     }
     else{
         while (true)
         {
+            cout<<"Input Name: ";
+            cin >> S.name;
+            cout <<"Surname: ";
+            cin >> S.surname;
             if(choice1 == '1')
                 inputRandom(S, n);
             else 

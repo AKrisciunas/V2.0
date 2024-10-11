@@ -12,10 +12,6 @@ bool inputInteger(int &value) {
 }
 
 void input(Stud &Local, int n){
-    cout<<"Input Name: ";
-    cin >> Local.name;
-    cout <<"Surname: ";
-    cin >> Local.surname;
     int temp;
     for (int i = 0; i < n; i++)
     {
@@ -42,11 +38,6 @@ void input(Stud &Local, int n){
 }
 
 void inputRandom(Stud &Local, int n){
-    cout<<"Input Name: ";
-    cin >> Local.name;
-    cout <<"Surname: ";
-    cin >> Local.surname;
-
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist10(1,10);

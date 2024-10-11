@@ -13,5 +13,6 @@ using std::cin;
 using std::setw;
 using std::string;
 using std::vector;
+using std::getline;
 
 #endif
