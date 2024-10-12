@@ -1,9 +1,11 @@
 # Program that calculates students results
 
-You will be give a choice to:
--input names, surnames, homework and exam results yourself
--generate homework and exam points randomly
--read data from a file
+On average whole test time of 10000 students with 20 homework results took approximately: 0.11 seconds,
+with 100000 students and 3 homework results each: 0.63 seconds.
 
-The program will calculate student results either with average or median method
-and output in a sorted table.
+Some examples of time tests when generating different size files:
+![alt text](tests/1000stud.png)
+![alt text](tests/10000stud.png)
+![alt text](tests/100000stud.png)
+![alt text](tests/1000000stud.png)
+![alt text](tests/10000000stud.png)

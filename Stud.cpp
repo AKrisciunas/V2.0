@@ -119,7 +119,7 @@ void sortToFile(vector<Stud> &vec, string method, int countND, int size){
         std::sort(vec.begin(), vec.end(), compareStudAverage);
         iter = std::find_if(vec.begin(), vec.end(), averageAt5);
     }
-    cout << size << " entries sorting time: " << t.elapsed() << "\n";
+    cout << size << " entries sorting and finding the split point time: " << t.elapsed() << "\n";
 
     t.reset();
     vector<Stud> below5(std::distance(vec.begin(), iter));
