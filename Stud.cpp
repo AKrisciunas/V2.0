@@ -110,6 +110,7 @@ void sortToFile(vector<Stud> &vec, string method, int countND, int size){
     writeFile(vec, std::to_string(size)+"studentu.txt", countND);
     cout << size << " entries to file time: " << t.elapsed() << "\n";
     vector<Stud>::iterator iter;
+    t.reset();
     if (method == "Med."){
         std::sort(vec.begin(), vec.end(), compareStudMedian);
         iter = std::find_if(vec.begin(), vec.end(), medianAt5);
@@ -118,12 +119,14 @@ void sortToFile(vector<Stud> &vec, string method, int countND, int size){
         std::sort(vec.begin(), vec.end(), compareStudAverage);
         iter = std::find_if(vec.begin(), vec.end(), averageAt5);
     }
-    
+    cout << size << " entries sorting time: " << t.elapsed() << "\n";
+
+    t.reset();
     vector<Stud> below5(std::distance(vec.begin(), iter));
     vector<Stud> aboveOrEqual5(std::distance(iter, vec.end()));
-
     below5.assign(vec.begin(), iter);
     aboveOrEqual5.assign(iter, vec.end()); 
+    cout << size << " entries splitting into 2, time: " << t.elapsed() << "\n";
 
     t.reset();
     writeFile(below5, "nelaimingi.txt", countND);
@@ -132,5 +135,5 @@ void sortToFile(vector<Stud> &vec, string method, int countND, int size){
     writeFile(aboveOrEqual5, "protingi.txt", countND);
     cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
 
-    cout << size << " entries whole test time: " << t2.elapsed();
+    cout << size << " entries whole test time: " << t2.elapsed() << "\n";
 }

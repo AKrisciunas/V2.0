@@ -6,6 +6,7 @@
 int main()
 {
     vector<Stud> V1;
+    Stud S;
     char temp, choice1, choice2;
     int n;
     cout<<"(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file \n(3) - Generate random data to file\n: ";
@@ -28,10 +29,9 @@ int main()
         {
             return 0;
         }
+        S.nd.reserve(n);
     }
     string fileName;
-    Stud S;
-    S.nd.reserve(n);
     char end;
     int generateCount;
     if(choice1 == '2'){
