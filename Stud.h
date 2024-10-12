@@ -17,6 +17,6 @@ void empty(Stud &Local);
 double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
-void sortToFile(vector<Stud> &vec, string method, int countND);
+void sortToFile(vector<Stud> &vec, string method, int countND, int size);
 
 #endif

@@ -1,6 +1,7 @@
 #include "Stud.h"
 #include "Mylib.h"
 #include "FileIO.h"
+#include "timer.h"
 
 bool inputInteger(int &value) {
     cin >> value;
@@ -55,7 +56,7 @@ void empty(Stud &Local){
 }
 
 double averageResult(vector<int> nd, int egz){
-    int sum=0;
+    double sum=0;
     for (auto &i : nd)
         sum+=i;
     return sum/nd.size()*0.4+egz*0.6;
@@ -103,8 +104,11 @@ bool averageAt5(Stud &a) {return averageResult(a.nd, a.egz) >= 5.0;}
 
 bool medianAt5(Stud &a) {return medianResult(a.nd, a.egz) >= 5.0;}
 
-void sortToFile(vector<Stud> &vec, string method, int countND){
-    writeFile(vec, "output.txt", countND);
+void sortToFile(vector<Stud> &vec, string method, int countND, int size){
+    Timer t;
+    Timer t2;
+    writeFile(vec, std::to_string(size)+"studentu.txt", countND);
+    cout << size << " entries to file time: " << t.elapsed() << "\n";
     vector<Stud>::iterator iter;
     if (method == "Med."){
         std::sort(vec.begin(), vec.end(), compareStudMedian);
@@ -121,7 +125,12 @@ void sortToFile(vector<Stud> &vec, string method, int countND){
     below5.assign(vec.begin(), iter);
     aboveOrEqual5.assign(iter, vec.end()); 
 
+    t.reset();
     writeFile(below5, "nelaimingi.txt", countND);
+    cout << size << " entries 'nelaimingu' to file time: " << t.elapsed() << "\n";
+    t.reset();
     writeFile(aboveOrEqual5, "protingi.txt", countND);
-    
+    cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
+
+    cout << size << " entries whole test time: " << t2.elapsed();
 }

@@ -52,7 +52,7 @@ int main()
            V1.push_back(S);
            empty(S);
         }
-        sortToFile(V1, calculationMethod, n);
+        sortToFile(V1, calculationMethod, n, generateCount);
     }
     else{
         while (true)
