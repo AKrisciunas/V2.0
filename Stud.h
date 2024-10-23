@@ -3,6 +3,8 @@
 
 #include "Mylib.h"
 
+extern int globalND; //global variable for students homework count
+
 struct Stud
 {
     string name, surname;
@@ -17,6 +19,6 @@ void empty(Stud &Local);
 double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
-void sortToFile(vector<Stud> &vec, string method, int countND, int size);
+void splitFile(vector<Stud> &vec, string method, int size, char sortName);
 
 #endif

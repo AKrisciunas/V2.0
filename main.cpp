@@ -1,6 +1,7 @@
 #include "Mylib.h"
 #include "Stud.h"
 #include "FileIO.h"
+#include "timer.h"
 #include <iostream>
 
 int main()
@@ -9,15 +10,18 @@ int main()
     Stud S;
     char temp, choice1, choice2;
     int n;
-    cout<<"(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file \n(3) - Generate random data to file\n: ";
+    cout<<"(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file\n" 
+    << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n: ";
     cin>>choice1;
-    cout<<"Use average - (0) or median - (1) for result calculation: ";
-    cin>>choice2;
+    if(choice1 != '3'){
+        cout<<"Use average - (0) or median - (1) for result calculation: ";
+        cin>>choice2;
+    }
     string calculationMethod = "Vid.";
     if(choice2 == '1')  calculationMethod = "Med.";
 
     //If reading data from file, program will find the number of homework results automatically
-    if(choice1 != '2'){
+    if(choice1 != '2' && choice1 != '4'){
         try
         {
             cout<<"How much homework results per student: ";
@@ -52,7 +56,19 @@ int main()
            V1.push_back(S);
            empty(S);
         }
-        sortToFile(V1, calculationMethod, n, generateCount);
+        writeFile(V1, std::to_string(generateCount)+"studentu.txt", n);
+    }
+    else if(choice1 == '4'){
+        cout<<"Write file directory: ";
+        cin>>fileName;
+        cout<<"(0) - to sort new files by result, or (1) - sort by name and surname\n:";
+        char sortName = '0';
+        cin >> sortName;
+        Timer t;
+        readFile(V1, fileName);
+        generateCount = (int) V1.size();
+        splitFile(V1, calculationMethod, generateCount, sortName);
+        cout << V1.size() << " entries whole test time: " << t.elapsed() << "\n";
     }
     else{
         while (true)

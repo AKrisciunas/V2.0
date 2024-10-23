@@ -1,9 +1,12 @@
 #include "Mylib.h"
 #include "Stud.h"
+#include "timer.h"
 #include <fstream>
+int globalND=0;
 
 void readFile(vector<Stud> &Vec, string fileName){
     try {
+        Timer t;
         std::ifstream input(fileName);
 
         if (!input.is_open()) {
@@ -11,14 +14,13 @@ void readFile(vector<Stud> &Vec, string fileName){
         }
 
         string line, column;
-        int countND=0;
         std::getline(input, line);
         std::istringstream header(line);
 
         //counting columns from first line
         while (header >> column)
-            countND++;
-
+            globalND++;
+        globalND-=3;    //excludes name surname and exam
         while (std::getline(input, line))
         {
             std::istringstream iss(line);
@@ -27,7 +29,7 @@ void readFile(vector<Stud> &Vec, string fileName){
             iss >> S.name >> S.surname;
 
             int temp;
-            for (int i = 0; i < countND-3; i++) {
+            for (int i = 0; i < globalND; i++) {
                 if (iss >> temp) {
                     S.nd.push_back(temp);
                 }
@@ -37,6 +39,7 @@ void readFile(vector<Stud> &Vec, string fileName){
             Vec.push_back(S);
         }
         input.close();
+        cout << "file reading time: " << t.elapsed() << "\n";
     } catch (const std::runtime_error& e) {
         std::cerr << "Error: " << e.what() << "\n";
     }
