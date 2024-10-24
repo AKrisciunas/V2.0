@@ -12,6 +12,8 @@ struct Stud
     int egz;
 };
 
+void userInterface();
+void userInterfaceList();
 void input(Stud &Local, int n);
 void inputRandom(Stud &Local, int n);
 void output(vector<Stud> &vec, string method);
@@ -20,5 +22,6 @@ double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
 void splitFile(vector<Stud> &vec, string method, int size, char sortName);
+void splitFileList(list<Stud> &vec, string method, int size, char sortName);
 
 #endif

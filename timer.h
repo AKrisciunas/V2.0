@@ -1,4 +1,5 @@
 #include <chrono>
+
 class Timer {
   private:
     using hrClock = std::chrono::high_resolution_clock;

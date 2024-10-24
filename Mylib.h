@@ -7,12 +7,14 @@
 #include <iomanip>
 #include <algorithm>
 #include <random>
+#include <list>
 
 using std::cout;
 using std::cin;
 using std::setw;
 using std::string;
 using std::vector;
+using std::list;
 using std::getline;
 
 #endif

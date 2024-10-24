@@ -135,3 +135,35 @@ void splitFile(vector<Stud> &vec, string method, int size, char sortName){
     writeFile(aboveOrEqual5, "protingi.txt", globalND);
     cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
 }
+
+void splitFileList(list<Stud> &vec, string method, int size, char sortName){
+    Timer t;
+    list<Stud>::iterator iter;
+    if (method == "Med."){
+        vec.sort(compareStudMedian);
+        iter = std::find_if(vec.begin(), vec.end(), medianAt5);
+    } 
+    else {
+        vec.sort(compareStudAverage);
+        iter = std::find_if(vec.begin(), vec.end(), averageAt5);
+    }
+    cout << size << " entries sorting and finding the split point time: " << t.elapsed() << "\n";
+
+    t.reset();
+    list<Stud> below5(std::distance(vec.begin(), iter));
+    list<Stud> aboveOrEqual5(std::distance(iter, vec.end()));
+    below5.assign(vec.begin(), iter);
+    aboveOrEqual5.assign(iter, vec.end()); 
+    if (sortName == '1'){
+        below5.sort(compareStud);
+        aboveOrEqual5.sort(compareStud);
+    }
+    cout << size << " entries splitting into 2, time: " << t.elapsed() << "\n";
+    
+    t.reset();
+    writeFileList(below5, "nelaimingi.txt", globalND);
+    cout << size << " entries 'nelaimingu' to file time: " << t.elapsed() << "\n";
+    t.reset();
+    writeFileList(aboveOrEqual5, "protingi.txt", globalND);
+    cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
+}
