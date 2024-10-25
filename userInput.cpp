@@ -23,7 +23,7 @@ void userInterface(){
         cout<<"How much homework results per student: ";  
         while(n<=0)
             cin>>n;  
-        S.nd.reserve(n);
+        S.nd.reserve(static_cast<vector<int>::size_type>(n));
     }
     string fileName;
     int generateCount;
@@ -36,7 +36,7 @@ void userInterface(){
     else if(choice1 == '3'){
         cout<<"How much students to generate: ";
         cin>>generateCount;
-        A.reserve(generateCount);
+        A.reserve(static_cast<vector<Stud>::size_type>(generateCount));
         for (int i = 0; i < generateCount; i++)
         {
            S.name = "Vardas" + std::to_string(i+1);
@@ -100,7 +100,7 @@ void userInterfaceList(){
         cout<<"How much homework results per student: ";  
         while(n<=0)
             cin>>n;  
-        S.nd.reserve(n);
+        S.nd.reserve(static_cast<vector<int>::size_type>(n));
     }
     string fileName;
     int generateCount;

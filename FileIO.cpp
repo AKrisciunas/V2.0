@@ -52,7 +52,7 @@ void writeFile(vector<Stud> V, string fileName, int countND) {
     buffer << "Egz.\n";    
     for (const auto& stud : V) {
         buffer << setw(15) << stud.name << setw(15) << stud.surname << setw(5);
-        for (int i = 0; i < countND; i++)   buffer << stud.nd.at(i) << setw(5);   
+        for (auto i = 0; i < countND; i++)   buffer << stud.nd.at(std::vector<int>::size_type(i)) << setw(5);   
         buffer << stud.egz << "\n";
     }
 
@@ -114,7 +114,7 @@ void writeFileList(list<Stud> V, string fileName, int countND) {
     buffer << "Egz.\n";    
     for (const auto& stud : V) {
         buffer << setw(15) << stud.name << setw(15) << stud.surname << setw(5);
-        for (int i = 0; i < countND; i++)   buffer << stud.nd.at(i) << setw(5);   
+        for (auto i = 0; i < countND; i++)   buffer << stud.nd.at(std::vector<int>::size_type(i)) << setw(5);   
         buffer << stud.egz << "\n";
     }
 
