@@ -17,6 +17,7 @@ void userInterfaceList();
 void input(Stud &Local, int n);
 void inputRandom(Stud &Local, int n);
 void output(vector<Stud> &vec, string method);
+void outputList(list<Stud> &vec, string method);
 void empty(Stud &Local);
 double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);

@@ -78,20 +78,37 @@ bool compareStud(Stud &a, Stud &b){
 }   
 
 void output(vector<Stud> &vec, string method){
-    cout << std::left << setw(20) << "Vardas" << setw(20) << "Pavarde" << "Galutinis ("<< method <<")\n";
-    cout << "------------------------------------------------------------\n";
+    cout << std::left << setw(20) << "Adresas" <<setw(15) << "Vardas" << setw(15) << "Pavarde" << "Galutinis ("<< method <<")\n";
+    cout << "-----------------------------------------------------------------\n";
     std::sort(vec.begin(), vec.end(), compareStud);
     if(method == "Vid."){
         for (auto &&Stud : vec)
-            cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
+            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name << setw(15) << Stud.surname 
             << std::fixed << std::setprecision(2) << averageResult(Stud.nd, Stud.egz) <<"\n";
     }
     else{
         for (auto &&Stud : vec)
-            cout << std::left << setw(20) << Stud.name << setw(20) << Stud.surname 
+            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name << setw(15) << Stud.surname 
             << std::fixed << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
     }
-    cout << "------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------\n";
+}
+
+void outputList(list<Stud> &vec, string method){
+    cout << std::left << setw(20) << "Adresas" <<setw(15) << "Vardas" << setw(15) << "Pavarde" << "Galutinis ("<< method <<")\n";
+    cout << "-----------------------------------------------------------------\n";
+    vec.sort(compareStud);
+    if(method == "Vid."){
+        for (auto &&Stud : vec)
+            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name << setw(15) << Stud.surname 
+            << std::fixed << std::setprecision(2) << averageResult(Stud.nd, Stud.egz) <<"\n";
+    }
+    else{
+        for (auto &&Stud : vec)
+            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name << setw(15) << Stud.surname 
+            << std::fixed << std::setprecision(2) << medianResult(Stud.nd, Stud.egz) << "\n";
+    }
+    cout << "-----------------------------------------------------------------\n";
 }
 
 bool compareStudAverage(Stud &a, Stud &b){

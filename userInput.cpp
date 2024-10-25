@@ -7,7 +7,7 @@ void userInterface(){
     Stud S;
     vector<Stud> A;
     char choice1, choice2;
-    int n;
+    int n=0;
     cout<<"(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file\n" 
     << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n: ";
     cin>>choice1;
@@ -86,8 +86,8 @@ void userInterfaceList(){
     Stud S;
     list<Stud> A;
     char choice1, choice2;
-    int n;
-    cout<<"(0) - Split file into 2, based on results\n(1) - Generate random data to file \n: ";
+    int n=0;
+    cout<<"(0) - Input information yourself \n(1) - Split file into 2, based on results\n(2) - Generate random data to file \n: ";
     cin>>choice1;
     if(choice1 != '1'){
         cout<<"Use average - (0) or median - (1) for result calculation: ";
@@ -95,9 +95,8 @@ void userInterfaceList(){
     }
     string calculationMethod = "Vid.";
     if(choice2 == '1')  calculationMethod = "Med.";
-
-    //If reading data from file, program will find the number of homework results automatically
-    if(choice1 != '0'){
+    
+    if(choice1 != '1'){
         cout<<"How much homework results per student: ";  
         while(n<=0)
             cin>>n;  
@@ -105,7 +104,7 @@ void userInterfaceList(){
     }
     string fileName;
     int generateCount;
-    if(choice1 == '1'){
+    if(choice1 == '2'){
         cout<<"How much students to generate: ";
         cin>>generateCount;
         for (int i = 0; i < generateCount; i++)
@@ -118,7 +117,7 @@ void userInterfaceList(){
         }
         writeFileList(A, std::to_string(generateCount)+"studentu.txt", n);
     }
-    else{
+    else if(choice1 == '1'){
         cout<<"Write file directory: ";
         cin>>fileName;
         cout<<"(0) - to sort new files by result, or (1) - sort by name and surname\n:";
@@ -129,5 +128,23 @@ void userInterfaceList(){
         generateCount = (int) A.size();
         splitFileList(A, calculationMethod, generateCount, sortName);
         cout << A.size() << " entries whole test time: " << t.elapsed() << "\n";
+    }
+    else{
+        char end;
+        while (true){
+            cout<<"Input Name: ";
+            cin >> S.name;
+            cout <<"Surname: ";
+            cin >> S.surname;
+            input(S, n);
+            A.push_back(S);  
+            empty(S); 
+            cout<<"Type (0) if you wish to stop, type (1) to continue: ";
+            cin>>end;
+            if(end == '0'){
+                break;
+            } 
+        }
+        outputList(A, calculationMethod);
     }
 }
