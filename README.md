@@ -9,21 +9,19 @@ Time tests were made with this computer:
 ## Speed tests (in seconds)
 
 ### Reading data from file time
-
-| Container | 1 000  |
-| --------- | ------:|
-| vector    | 0.0017 |
-| list      | 0.0022 |
+| Container | 1 000  | 10 000 |
+| --------- | ------:| ------:|
+| vector    | 0.0017 | 0.0563 |
+| list      | 0.0022 | 0.0198 |
 
 ### Student separation into 2 categories time (using average method)
-| Container | 1 000  |
-| --------- | ------:|
-| vector    | 0.0036 |
-| list      | 0.0034 |
+| Container | 1 000  | 10 000 |
+| --------- | ------:| ------:|
+| vector    | 0.0036 | 0.0366 |
+| list      | 0.0034 | 0.0406 |
 
 ### Data output to files time
-
-| Container | 1 000  |
-| --------- | ------:|
-| vector    | 0.0035 |
-| list      | 0.0034 |
+| Container | 1 000  | 10 000 |
+| --------- | ------:| ------:|
+| vector    | 0.0035 | 0.0133 |
+| list      | 0.0034 | 0.0113 |
