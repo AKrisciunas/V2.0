@@ -1,11 +1,29 @@
 # Program that calculates students results
 
-On average whole test time of 10000 students with 20 homework results took approximately: 0.11 seconds,
-with 100000 students and 3 homework results each: 0.63 seconds.
+Time tests were made with this computer:
+* Processor	AMD Ryzen 3 5300U with Radeon Graphics, 2600 Mhz, 4 Core(s), 8 Logical Processor(s)
+* Installed Physical Memory (RAM)	16.0 GB
+* DISK SSD
+* OS Microsoft Windows 11 Home
 
-Some examples of time tests when generating different size files:
-![alt text](tests/1000stud.png)
-![alt text](tests/10000stud.png)
-![alt text](tests/100000stud.png)
-![alt text](tests/1000000stud.png)
-![alt text](tests/10000000stud.png)
+## Speed tests (in seconds)
+
+### Reading data from file time
+
+| Container | 1 000  |
+| --------- | ------:|
+| vector    | 0.0017 |
+| list      | 0.0022 |
+
+### Student separation into 2 categories time (using average method)
+| Container | 1 000  |
+| --------- | ------:|
+| vector    | 0.0036 |
+| list      | 0.0034 |
+
+### Data output to files time
+
+| Container | 1 000  |
+| --------- | ------:|
+| vector    | 0.0035 |
+| list      | 0.0034 |

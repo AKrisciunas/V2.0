@@ -89,7 +89,7 @@ void userInterfaceList(){
     int n=0;
     cout<<"(0) - Input information yourself \n(1) - Split file into 2, based on results\n(2) - Generate random data to file \n: ";
     cin>>choice1;
-    if(choice1 != '1'){
+    if(choice1 != '2'){
         cout<<"Use average - (0) or median - (1) for result calculation: ";
         cin>>choice2;
     }
