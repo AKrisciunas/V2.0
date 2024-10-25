@@ -25,3 +25,11 @@ Time tests were made with this computer:
 | --------- | ------:| ------:| -------:| ---------:| ----------:|
 | vector    | 0.0035 | 0.0133 | 0.0871  | 0.7466    | 6.6629     |
 | list      | 0.0034 | 0.0113 | 0.1242  | 0.9998    | 10.6156    |
+
+#### Findings
+From tests, we see LIST container has similar efficiency with VECTOR when reading files,
+however when separating huge lists like 10 000 000 there is almost 10 seconds difference in speed.
+
+#### Some examples of the tests
+![alt text](<tests/Screenshot 2024-10-25 135841.png>)
+![alt text](<tests/Screenshot 2024-10-25 151113.png>)
