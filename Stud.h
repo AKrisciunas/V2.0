@@ -12,17 +12,15 @@ struct Stud
     int egz;
 };
 
-void userInterface();
-void userInterfaceList();
 void input(Stud &Local, int n);
 void inputRandom(Stud &Local, int n);
-void output(vector<Stud> &vec, string method);
-void outputList(list<Stud> &vec, string method);
 void empty(Stud &Local);
 double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
-void splitFile(vector<Stud> &vec, string method, int size, char sortName);
-void splitFileList(list<Stud> &vec, string method, int size, char sortName);
+bool compareStudAverage(Stud &a, Stud &b);
+bool compareStudMedian(Stud &a, Stud &b);
+bool averageAt5(Stud &a);
+bool medianAt5(Stud &a);
 
 #endif

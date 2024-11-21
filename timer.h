@@ -1,3 +1,6 @@
+#ifndef TIMER_H_INCLUDED
+#define TIMER_H_INCLUDED
+
 #include <chrono>
 
 class Timer {
@@ -14,3 +17,5 @@ class Timer {
       return durationDouble (hrClock::now() - start).count();
     }
 };
+
+#endif  // TIMER_H_INCLUDED
