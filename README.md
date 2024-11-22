@@ -9,6 +9,12 @@
 | vector    | 0.0303 | 0.0931 | 0.7135  | 8.1077    | 73.2763    |
 | list      | 0.0213 | 0.0872 | 0.7848  | 9.4935    | 80.6039    |
 
+#### 2nd strategy (whole test time)
+##### adding to new container and removing from original
+| Container | 1 000  | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+| --------- | ------:| ------:| -------:| ---------:| ----------:|
+| vector    | 0.0079 | 0.2454 | 25.2423 | 5min+     | too long   |
+| list      | 0.0858 | 0.0689 | 0.7837  | 35.576    | 86.5145    |
 
 #### original strategy (whole test time)
 ##### sort students and find splitpoint, using that iterator split into 2 files
@@ -17,6 +23,10 @@
 | vector    | 0.0235 | 0.0737 | 0.8311  | 9.1964    | 84.2759    |
 | list      | 0.0343 | 0.1134 | 1.2422  | 9.8934    | 91.9894    |
 
+
+#### Findings
+
+Note that in the 2nd strategy with LIST the algorithm for splitting was very fast (with 10 000 000 it was only 2 seconds), however file reading and sorting increased the whole test time by a lot.
 
 
 ## Speed tests (in seconds) - v0.3
