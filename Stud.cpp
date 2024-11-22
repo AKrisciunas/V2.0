@@ -76,6 +76,10 @@ bool compareStud(Stud &a, Stud &b){
         return a.surname < b.surname;
 }   
 
+bool compareStudSurname(Stud &a, Stud &b){
+    return a.surname < b.surname;
+}
+
 bool compareStudAverage(Stud &a, Stud &b){
     return averageResult(a.nd, a.egz) < averageResult(b.nd, b.egz);
 }   
@@ -85,73 +89,3 @@ bool compareStudMedian(Stud &a, Stud &b){
 bool averageAt5(Stud &a) {return averageResult(a.nd, a.egz) >= 5.0;}
 
 bool medianAt5(Stud &a) {return medianResult(a.nd, a.egz) >= 5.0;}
-
-// void splitFile(vector<Stud> &vec, string method, int size, char sortName){
-//     Timer t;
-//     Timer t1;
-//     vector<Stud>::iterator iter;
-//     if (method == "Med."){
-//         std::sort(vec.begin(), vec.end(), compareStudMedian);
-//         iter = std::find_if(vec.begin(), vec.end(), medianAt5);
-//     } 
-//     else {
-//         std::sort(vec.begin(), vec.end(), compareStudAverage);
-//         iter = std::find_if(vec.begin(), vec.end(), averageAt5);
-//     }
-//     cout << size << " entries sorting and finding the split point time: " << t.elapsed() << "\n";
-
-//     t.reset();
-//     vector<Stud> below5(static_cast<vector<Stud>::size_type>(std::distance(vec.begin(), iter)));
-//     vector<Stud> aboveOrEqual5(static_cast<vector<Stud>::size_type>(std::distance(iter, vec.end())));
-//     below5.assign(vec.begin(), iter);
-//     aboveOrEqual5.assign(iter, vec.end()); 
-//     if (sortName == '1'){
-//         std::sort(below5.begin(), below5.end(), compareStud);
-//         std::sort(aboveOrEqual5.begin(), aboveOrEqual5.end(), compareStud);
-//     }
-//     cout << size << " entries splitting into 2, time: " << t.elapsed() << "\n";
-//     cout << "separation into 2 groups time: " << t1.elapsed() << "\n-----\n";
-//     t1.reset();
-//     t.reset();
-//     writeFile(below5, "nelaimingi.txt", globalND);
-//     cout << size << " entries 'nelaimingu' to file time: " << t.elapsed() << "\n";
-//     t.reset();
-//     writeFile(aboveOrEqual5, "protingi.txt", globalND);
-//     cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
-//     cout << "both groups to files time: " << t1.elapsed() << "\n-----\n";
-// }
-
-// void splitFileList(list<Stud> &vec, string method, int size, char sortName){
-//     Timer t;
-//     Timer t1;
-//     list<Stud>::iterator iter;
-//     if (method == "Med."){
-//         vec.sort(compareStudMedian);
-//         iter = std::find_if(vec.begin(), vec.end(), medianAt5);
-//     } 
-//     else {
-//         vec.sort(compareStudAverage);
-//         iter = std::find_if(vec.begin(), vec.end(), averageAt5);
-//     }
-//     cout << size << " entries sorting and finding the split point time: " << t.elapsed() << "\n";
-
-//     t.reset();
-//     list<Stud> below5(static_cast<list<Stud>::size_type>(std::distance(vec.begin(), iter)));
-//     list<Stud> aboveOrEqual5(static_cast<list<Stud>::size_type>(std::distance(iter, vec.end())));
-//     below5.assign(vec.begin(), iter);
-//     aboveOrEqual5.assign(iter, vec.end()); 
-//     if (sortName == '1'){
-//         below5.sort(compareStud);
-//         aboveOrEqual5.sort(compareStud);
-//     }
-//     cout << size << " entries splitting into 2, time: " << t.elapsed() << "\n";
-//     cout << "separation into 2 groups time: " << t1.elapsed() << "\n-----\n";
-//     t1.reset();
-//     t.reset();
-//     writeFileList(below5, "nelaimingi.txt", globalND);
-//     cout << size << " entries 'nelaimingu' to file time: " << t.elapsed() << "\n";
-//     t.reset();
-//     writeFileList(aboveOrEqual5, "protingi.txt", globalND);
-//     cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
-//     cout << "both groups to files time: " << t1.elapsed() << "\n-----\n";
-// }

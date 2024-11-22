@@ -18,6 +18,7 @@ void empty(Stud &Local);
 double averageResult(vector<int> nd, int egz);
 double medianResult(vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
+bool compareStudSurname(Stud &a, Stud &b);
 bool compareStudAverage(Stud &a, Stud &b);
 bool compareStudMedian(Stud &a, Stud &b);
 bool averageAt5(Stud &a);

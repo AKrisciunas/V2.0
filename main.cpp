@@ -4,6 +4,46 @@
 #include <fstream>
 int globalND=0;
 
+
+template<typename Container>
+void sortContainer(Container& A, char sortType, string method) {
+    if (sortType == '0') {
+        if (method == "Vid.") {
+            if constexpr (std::is_same_v<Container, std::vector<Stud>>) {
+                std::sort(A.begin(), A.end(), [](const Stud& a, const Stud& b) {
+                    return averageResult(a.nd, a.egz) < averageResult(b.nd, b.egz);
+                });
+            } else if constexpr (std::is_same_v<Container, std::list<Stud>>) {
+                A.sort([](const Stud& a, const Stud& b) {
+                    return averageResult(a.nd, a.egz) < averageResult(b.nd, b.egz);
+                });
+            }
+        } else if (method == "Med.") {
+            if constexpr (std::is_same_v<Container, std::vector<Stud>>) {
+                std::sort(A.begin(), A.end(), [](const Stud& a, const Stud& b) {
+                    return medianResult(a.nd, a.egz) < medianResult(b.nd, b.egz);
+                });
+            } else if constexpr (std::is_same_v<Container, std::list<Stud>>) {
+                A.sort([](const Stud& a, const Stud& b) {
+                    return medianResult(a.nd, a.egz) < medianResult(b.nd, b.egz);
+                });
+            }
+        }
+    } else if (sortType == '1') {
+        if constexpr (std::is_same_v<Container, std::vector<Stud>>) {
+            std::sort(A.begin(), A.end(), compareStud);
+        } else if constexpr (std::is_same_v<Container, std::list<Stud>>) {
+            A.sort(compareStud);
+        }
+    } else if (sortType == '2') {
+        if constexpr (std::is_same_v<Container, std::vector<Stud>>) {
+            std::sort(A.begin(), A.end(), compareStudSurname);
+        } else if constexpr (std::is_same_v<Container, std::list<Stud>>) {
+            A.sort(compareStudSurname);
+        }
+    }
+}
+
 template<typename Container>
 void readFile(Container& A, string fileName){
     try {
@@ -93,29 +133,45 @@ void output(Container &A, string method){
 }
 
 template<typename Container>
-void splitFile(Container& A, string method, int size, char sortName){
+void splitFileStrat1(Container& A, Container& kietiakai, Container& vargsiukai, string method, char sortType){
+    Timer t;
+    if(method == "Vid."){
+        for (const auto& stud : A) {
+            if (averageResult(stud.nd, stud.egz) < 5.0) {
+                vargsiukai.push_back(stud);
+            }
+            else {
+                kietiakai.push_back(stud);
+            }
+        }
+    }
+    else{
+        for (const auto& stud : A) {
+            if (medianResult(stud.nd, stud.egz) < 5.0) {
+                vargsiukai.push_back(stud);
+            }
+            else {
+                kietiakai.push_back(stud);
+            }
+        }
+    }
+    sortContainer(vargsiukai, sortType, method);
+    sortContainer(kietiakai, sortType, method);
+    writeFile(vargsiukai, "nelaimingi.txt", globalND);
+    writeFile(kietiakai, "protingi.txt", globalND);
+    cout << "Splitting into 2 groups time: " << t.elapsed() << "\n";
+}
+
+template<typename Container>
+void splitFile(Container& A, string method, int size, char sortType){
     Timer t;
     Timer t1;
     auto iter = A.begin();
-    if constexpr (std::is_same_v<Container, std::vector<Stud>>){
-        if (method == "Med."){
-            std::sort(A.begin(), A.end(), compareStudMedian);
-            iter = std::find_if(A.begin(), A.end(), medianAt5);
-        } 
-        else {
-            std::sort(A.begin(), A.end(), compareStudAverage);
-            iter = std::find_if(A.begin(), A.end(), averageAt5);
-        }
-    }
-    else if constexpr (std::is_same_v<Container, std::list<Stud>>){
-        if (method == "Med."){
-            A.sort(compareStudMedian);
-            iter = std::find_if(A.begin(), A.end(), medianAt5);
-        } 
-        else {
-            A.sort(compareStudAverage);
-            iter = std::find_if(A.begin(), A.end(), averageAt5);
-        }
+    sortContainer(A, '0', method);
+    if (method == "Med.") {
+        iter = std::find_if(A.begin(), A.end(), medianAt5);
+    } else {
+        iter = std::find_if(A.begin(), A.end(), averageAt5);
     }
     cout << size << " entries sorting and finding the split point time: " << t.elapsed() << "\n";
 
@@ -130,15 +186,10 @@ void splitFile(Container& A, string method, int size, char sortName){
         below5.splice(below5.begin(), A, A.begin(), iter);
         aboveOrEqual5.splice(aboveOrEqual5.begin(), A, iter, A.end());
     }
-    if (sortName == '1'){
-        if constexpr (std::is_same_v<Container, std::vector<Stud>>){
-            std::sort(below5.begin(), below5.end(), compareStud);
-            std::sort(aboveOrEqual5.begin(), aboveOrEqual5.end(), compareStud);
-        }
-        else if constexpr (std::is_same_v<Container, std::list<Stud>>){
-            below5.sort(compareStud);
-            aboveOrEqual5.sort(compareStud);
-        }
+    if (sortType != '0')
+    {    
+        sortContainer(below5, sortType, method);
+        sortContainer(aboveOrEqual5, sortType, method);
     }
     cout << size << " entries splitting into 2, time: " << t.elapsed() << "\n";
     cout << "separation into 2 groups time: " << t1.elapsed() << "\n-----\n";
@@ -151,6 +202,7 @@ void splitFile(Container& A, string method, int size, char sortName){
     cout << size << " entries 'protingu' to file time: " << t.elapsed() << "\n";
     cout << "both groups to files time: " << t1.elapsed() << "\n-----\n";
 }
+
 template<typename Container>
 void userInterface(Container& A){
     Stud S;
@@ -171,7 +223,6 @@ void userInterface(Container& A){
         cout<<"How much homework results per student: ";  
         while(n<=0)
             cin>>n;  
-        //                                                      S.nd.reserve(static_cast<typename Container::value_type::vector_type::size_type>(n));
     }
     string fileName;
     int generateCount;
@@ -184,7 +235,6 @@ void userInterface(Container& A){
     else if(choice1 == '3'){
         cout<<"How much students to generate: ";
         cin>>generateCount;
-        //                                              A.reserve(static_cast<typename Container::size_type>(generateCount));
         for (int i = 0; i < generateCount; i++)
         {
            S.name = "Vardas" + std::to_string(i+1);
@@ -196,15 +246,28 @@ void userInterface(Container& A){
         writeFile(A, std::to_string(generateCount)+"studentu.txt", n);
     }
     else if(choice1 == '4'){
+        int strategy = 1;
+        cout<<"Which strategy to use (1,2,3): \n1 - Looping through all students and splitting into 2\n"
+        << "\n 2 - Finding the split point and splitting into 2";
+        cin>>strategy;
         cout<<"Write file directory: ";
         cin>>fileName;
-        cout<<"(0) - to sort new files by result, or (1) - sort by name and surname\n:";
-        char sortName = '0';
-        cin >> sortName;
+        cout<<"(0) - to sort new files by result, (1) - sort by name and surname or (2) - sort only surname\n:";
+        char sortType = '0';
+        cin >> sortType;
         Timer t;
         readFile(A, fileName);
         generateCount = (int) A.size();
-        splitFile(A, calculationMethod, generateCount, sortName);
+        if(strategy == 1){
+            Container kietiakai;
+            Container vargsiukai;
+            splitFileStrat1(A, kietiakai, vargsiukai, calculationMethod, sortType);
+        }else if (strategy == 2)
+        {
+            splitFile(A, calculationMethod, generateCount, sortType);
+        }else{
+            
+        }
         cout << A.size() << " entries whole test time: " << t.elapsed() << "\n";
     }
     else{
@@ -229,6 +292,7 @@ void userInterface(Container& A){
         output(A, calculationMethod);
     }
 }
+
 int main()
 {
     char temp;
