@@ -246,9 +246,9 @@ void userInterface(Container& A){
         writeFile(A, std::to_string(generateCount)+"studentu.txt", n);
     }
     else if(choice1 == '4'){
-        int strategy = 1;
+        char strategy;
         cout<<"Which strategy to use (1,2,3): \n1 - Looping through all students and splitting into 2\n"
-        << "2 - Finding the split point and splitting into 2\n: ";
+        << "2 - Finding the split point and split into 2\n: ";
         cin>>strategy;
         cout<<"Write file directory: ";
         cin>>fileName;
@@ -258,17 +258,17 @@ void userInterface(Container& A){
         Timer t;
         readFile(A, fileName);
         generateCount = (int) A.size();
-        if(strategy == 1){
+        if(strategy == '1'){
             Container kietiakai;
             Container vargsiukai;
             splitFileStrat1(A, kietiakai, vargsiukai, calculationMethod, sortType);
-        }else if (strategy == 2)
+        }else if (strategy == '2')
         {
             splitFile(A, calculationMethod, generateCount, sortType);
         }else{
             
         }
-        cout << A.size() << " entries whole test time: " << t.elapsed() << "\n";
+        cout << " entries whole test time: " << t.elapsed() << "\n";
     }
     else{
         char end;
