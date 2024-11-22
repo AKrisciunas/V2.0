@@ -133,8 +133,10 @@ void output(Container &A, string method){
 }
 
 template<typename Container>
-void splitFileStrat1(Container& A, Container& kietiakai, Container& vargsiukai, string method, char sortType){
+void splitFileStrat1(Container& A, string method, char sortType){
     Timer t;
+    Container kietiakai;
+    Container vargsiukai;
     if(method == "Vid."){
         for (const auto& stud : A) {
             if (averageResult(stud.nd, stud.egz) < 5.0) {
@@ -155,11 +157,39 @@ void splitFileStrat1(Container& A, Container& kietiakai, Container& vargsiukai, 
             }
         }
     }
+    cout << "Splitting into 2 groups time: " << t.elapsed() << "\n";
     sortContainer(vargsiukai, sortType, method);
     sortContainer(kietiakai, sortType, method);
     writeFile(vargsiukai, "nelaimingi.txt", globalND);
     writeFile(kietiakai, "protingi.txt", globalND);
+}
+template<typename Container>
+void splitFileStrat2(Container& A, string method, char sortType) {
+    Timer t;
+    Container vargsiukai;
+    for (auto it = A.begin(); it != A.end();) {
+        if (method == "Vid.") {
+            if (averageResult(it->nd, it->egz) < 5.0) {
+                vargsiukai.push_back(*it);
+                it = A.erase(it);
+            } else {
+                ++it;
+            }
+        }
+        else {
+            if (medianResult(it->nd, it->egz) < 5.0) {
+                vargsiukai.push_back(*it);
+                it = A.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    }
     cout << "Splitting into 2 groups time: " << t.elapsed() << "\n";
+    sortContainer(A, sortType, method);
+    sortContainer(vargsiukai, sortType, method);
+    writeFile(vargsiukai, "nelaimingi.txt", globalND);
+    writeFile(A, "protingi.txt", globalND);
 }
 
 template<typename Container>
@@ -247,8 +277,8 @@ void userInterface(Container& A){
     }
     else if(choice1 == '4'){
         char strategy;
-        cout<<"Which strategy to use (1,2,3): \n1 - Looping through all students and splitting into 2\n"
-        << "2 - Finding the split point and split into 2\n: ";
+        cout<<"Which strategy to use: \n0 - (original solution) Finding the split point and split into 2 \n1 - Looping through all students and splitting into 2\n"
+        << "2 - adding to new container and removing from original\n: ";
         cin>>strategy;
         cout<<"Write file directory: ";
         cin>>fileName;
@@ -259,14 +289,11 @@ void userInterface(Container& A){
         readFile(A, fileName);
         generateCount = (int) A.size();
         if(strategy == '1'){
-            Container kietiakai;
-            Container vargsiukai;
-            splitFileStrat1(A, kietiakai, vargsiukai, calculationMethod, sortType);
-        }else if (strategy == '2')
-        {
-            splitFile(A, calculationMethod, generateCount, sortType);
+            splitFileStrat1(A, calculationMethod, sortType);
+        }else if (strategy == '2'){
+            splitFileStrat2(A, calculationMethod, sortType);
         }else{
-            
+            splitFile(A, calculationMethod, generateCount, sortType);   
         }
         cout << " entries whole test time: " << t.elapsed() << "\n";
     }

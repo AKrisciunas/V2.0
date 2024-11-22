@@ -8,7 +8,9 @@
 | --------- | ------:| ------:| -------:| ---------:| ----------:|
 | vector    | 0.0303 | 0.0931 | 0.7135  | 8.1077    | 73.2763    |
 | list      | 0.0213 | 0.0872 | 0.7848  | 9.4935    | 80.6039    |
-#### 2nd (original) strategy (whole test time)
+
+
+#### original strategy (whole test time)
 ##### sort students and find splitpoint, using that iterator split into 2 files
 | Container | 1 000  | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 | --------- | ------:| ------:| -------:| ---------:| ----------:|
