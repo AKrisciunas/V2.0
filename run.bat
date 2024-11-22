@@ -1,7 +1,7 @@
 cmake CMakeLists.txt
 cmake --install .
 cmake --build .
-copy src\\studentai_1000.txt build\\Debug\\studentai_1000.txt
+copy src\\1000studentu.txt build\\Debug\\1000studentu.txt
 cd Debug\
 obj_projektas.exe
 pause
