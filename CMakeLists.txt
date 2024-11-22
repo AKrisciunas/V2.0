@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.25)
 project(obj_projektas)
 
 set(CMAKE_CXX_STANDARD 14)
