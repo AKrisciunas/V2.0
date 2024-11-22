@@ -248,7 +248,7 @@ void userInterface(Container& A){
     else if(choice1 == '4'){
         int strategy = 1;
         cout<<"Which strategy to use (1,2,3): \n1 - Looping through all students and splitting into 2\n"
-        << "\n 2 - Finding the split point and splitting into 2";
+        << "2 - Finding the split point and splitting into 2\n: ";
         cin>>strategy;
         cout<<"Write file directory: ";
         cin>>fileName;
