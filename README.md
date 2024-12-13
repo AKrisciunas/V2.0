@@ -1,5 +1,5 @@
 # Program that calculates students results
-
+To use program you have to download CMake, then double click run.bat file, and the program will generate obj_projektas.exe in Debug folder, which runs the program.
 ## 1.0 version tests
 
 #### 1st strategy (whole test time)
