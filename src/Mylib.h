@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <random>
 #include <list>
-
 #include <cstddef>
 #include <cstring>
 #include <utility>

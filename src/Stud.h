@@ -7,20 +7,23 @@ extern int globalND; //global variable for students homework count
 
 class Stud {
 private:
-    std::string name_;
-    std::string surname_;
-    std::vector<int> nd_;
+    string name_;
+    string surname_;
+    vector<int> nd_;
     int egz_;
-
 public:
+    Stud(): name_(""), surname_(""), nd_({}), egz_(0) {}
     Stud(const std::string& name, const std::string& surname, const std::vector<int>& nd, int egz)
         : name_(name), surname_(surname), nd_(nd), egz_(egz) {}
-    ~Stud() {}
 
-    std::string name() const { return name_; }
-    std::string surname() const { return surname_; }
-    std::vector<int> nd() const { return nd_; }
-    int egz() const { return egz_; }
+    ~Stud() {
+        nd_.clear();
+    }
+    
+    string& name() { return name_; }
+    string& surname() { return surname_; }
+    vector<int>& nd() { return nd_; }
+    double egz() { return egz_; }
 
     void setName(std::string name) {
         name_ = name;
@@ -38,9 +41,8 @@ public:
 
 void input(Stud &Local, int n);
 void inputRandom(Stud &Local, int n);
-void empty(Stud &Local);
-double averageResult(const vector<int> nd, int egz);
-double medianResult(const vector<int> nd, int egz);
+double averageResult( vector<int> nd, int egz);
+double medianResult( vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
 bool compareStudSurname(Stud &a, Stud &b);
 bool compareStudAverage(Stud &a, Stud &b);
