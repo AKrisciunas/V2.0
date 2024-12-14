@@ -9,6 +9,10 @@
 #include <random>
 #include <list>
 
+#include <cstddef>
+#include <cstring>
+#include <utility>
+
 using std::cout;
 using std::cin;
 using std::setw;
