@@ -26,6 +26,15 @@ void input(Stud& Local, int n) {
             }
         }
     }
+    cout << "Exam: ";
+    while (true) {
+        if (inputInteger(temp)) {
+            Local.setEgz(temp); 
+            break;
+        } else {
+            cout << "Invalid input. Please enter a number.\n"; 
+        }
+    }
 }
 
 void inputRandom(Stud& Local, int n) {

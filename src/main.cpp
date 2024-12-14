@@ -299,6 +299,27 @@ void userInterface(Container& A){
         } else {
             splitFile(A, calculationMethod, generateCount, sortType);
         }
+        cout << " entries whole test time: " << t.elapsed() << "\n";
+    }
+    else{
+        char end;
+        while (true){
+            cout<<"Input Name: ";
+            cin >> S.name();
+            cout <<"Surname: ";
+            cin >> S.surname();
+            if(choice1 == '1')
+                inputRandom(S, n);
+            else 
+                input(S, n);
+            A.push_back(S);   
+            cout<<"Type (0) if you wish to stop, type (1) to continue: ";
+            cin>>end;
+            if(end == '0'){
+                break;
+            } 
+        }
+        output(A, calculationMethod);
     }
 }
 
