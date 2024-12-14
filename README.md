@@ -6,6 +6,8 @@ To use program you have to download CMake, then double click run.bat file, and t
 | Container | 100 000 | 1 000 000 |
 | --------- | -------:| ---------:|
 | Class     | 1.7684  | 16.8388   |
+| Struct    | 1.4077  | 14.5906   |
+Structure seems to be a bit faster
 
 ## 1.0 version tests
 
