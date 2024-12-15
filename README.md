@@ -11,11 +11,19 @@ To use program you have to download CMake, then double click run.bat file, and t
 
 #### Speed tests with CLASS and different flags
 ##### Using 1st strat and VECTOR. For reference previous CMake .exe size was 1006 KB.
-| Flag   | 100 000 | 1 000 000 | .exe size KB
-| ------ | -------:| ---------:| 
-| O1     | 0.7774  | 8.3225    | 288
-| O2     | 0.7595  | 8.1451    | 275
-| O3     | 0.7198  | 7.9818    | 267
+| Flag   | 100 000 | 1 000 000 | .exe size KB |
+| ------ | -------:| ---------:| ------------:|
+| O1     | 0.7774  | 8.3225    | 288          |
+| O2     | 0.7595  | 8.1451    | 275          |
+| O3     | 0.7198  | 7.9818    | 267          |
+
+#### same tests with STRUCT:
+| Flag   | 100 000 | 1 000 000 | .exe size KB |
+| ------ | -------:| ---------:| ------------:|
+| O1     | 0.6173  | 6.8985    | 300          |
+| O2     | 0.5794  | 6.6762    | 280          |
+| O3     | 0.5718  | 6.6635    | 279          |
+##### example of creating .exe with a flag: g++ -O1 -o programO1 C:\ ... \src\ *.cpp
 
 ## 1.0 version tests
 
