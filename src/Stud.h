@@ -12,19 +12,35 @@ private:
     vector<int> nd_;
     int egz_;
 public:
+    // default constructor
     Stud(): name_(""), surname_(""), nd_({}), egz_(0) {}
+
+    // constructor
     Stud(const std::string& name, const std::string& surname, const std::vector<int>& nd, int egz)
         : name_(name), surname_(surname), nd_(nd), egz_(egz) {}
 
+    // copy assignment operator
+    Stud& operator=(const Stud& other) {    
+        if (this != &other) {
+            name_ = other.name_;
+            surname_ = other.surname_;
+            nd_ = other.nd_;
+            egz_ = other.egz_;
+        }
+        return *this;
+    }
+
+    // destructor
     ~Stud() {
         nd_.clear();
     }
     
+    // getters
     string& name() { return name_; }
     string& surname() { return surname_; }
     vector<int>& nd() { return nd_; }
     double egz() { return egz_; }
-
+    // setters
     void setName(std::string name) {
         name_ = name;
     }
@@ -37,24 +53,7 @@ public:
     void setEgz(int egz) {
         egz_ = egz;
     }
-    Stud& operator=(const Stud& other) {
-        if (this != &other) {
-            name_ = other.name_;
-            surname_ = other.surname_;
-            nd_ = other.nd_;
-            egz_ = other.egz_;
-        }
-        return *this;
-    }
-    
-    // friend std::istream& operator>>(std::istream& is, Stud& stud) {
-    //     is >> stud.name_ >> stud.surname_;
-    //     for (int i = 0; i < globalND; ++i) {
-    //         is >> stud.nd_[i];
-    //     }
-    //     is >> stud.egz_;
-    //     return is;
-    // }
+    // operators
     friend std::istream& operator>>(std::istream& is, Stud& stud);
     friend std::ostream& operator<<(std::ostream& os, const Stud& stud) {
         os << std::left << setw(20) << &stud << setw(15) << stud.name_ << setw(15) << stud.surname_;
@@ -66,7 +65,6 @@ public:
     }
 };
 
-void input(Stud &Local, int n);
 void inputRandom(Stud &Local, int n);
 double averageResult( vector<int> nd, int egz);
 double medianResult( vector<int> nd, int egz);
