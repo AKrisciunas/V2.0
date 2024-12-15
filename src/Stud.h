@@ -19,6 +19,9 @@ public:
     Stud(const std::string& name, const std::string& surname, const std::vector<int>& nd, int egz)
         : name_(name), surname_(surname), nd_(nd), egz_(egz) {}
 
+    // Copy constructor
+    Stud(const Stud& other) : name_(other.name_), surname_(other.surname_), nd_(other.nd_), egz_(other.egz_) {}
+
     // copy assignment operator
     Stud& operator=(const Stud& other) {    
         if (this != &other) {
