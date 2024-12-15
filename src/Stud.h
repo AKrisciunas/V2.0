@@ -5,7 +5,24 @@
 
 extern int globalND; //global variable for students homework count
 
-class Stud {
+class Person {
+protected:
+    std::string name_;
+    std::string surname_;
+
+public:
+    Person() : name_(""), surname_("") {}
+
+    Person(const std::string& name, const std::string& surname)
+        : name_(name), surname_(surname) {}
+
+    std::string name() const { return name_; }
+    std::string surname() const { return surname_; }
+    
+    virtual ~Person() {}
+};
+
+class Stud{
 private:
     string name_;
     string surname_;
