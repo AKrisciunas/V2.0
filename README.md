@@ -1,7 +1,11 @@
 # Program that calculates students results
 To use program you have to download CMake, then double click run.bat file, and the program will generate obj_projektas.exe in Debug folder, which runs the program.
 
-## 1.1 version tests
+## 1.1 version 
+
+##### cin ">>" input operator takes all student information at once
+##### cout "<<" output operator returns pointer, name and surname of stu
+
 #### Speed tests with struct and class using 1st strategy and VECTOR container
 | Type      | 100 000 | 1 000 000 |
 | --------- | -------:| ---------:|
@@ -25,10 +29,7 @@ To use program you have to download CMake, then double click run.bat file, and t
 | O3     | 0.5718  | 6.6635    | 279          |
 ##### example of creating .exe with a flag: g++ -O1 -o programO1 C:\ ... \src\ *.cpp
 
-## 1.0 version
-
-##### cin ">>" input operator takes all student information at once
-##### cout "<<" output operator returns pointer, name and surname of student
+## 1.0 version tests
 
 #### 1st strategy (whole test time)
 ##### loop through all students check if result is above or below 5 and add to files accordingly
