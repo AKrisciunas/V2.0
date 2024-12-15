@@ -126,13 +126,11 @@ void output(Container &A, string method){
     }
     if(method == "Vid."){
         for (auto &&Stud : A)
-            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name() << setw(15) << Stud.surname() 
-            << std::fixed << std::setprecision(2) << averageResult(Stud.nd(), Stud.egz()) <<"\n";
+            cout << Stud << std::fixed << std::setprecision(2) << averageResult(Stud.nd(), Stud.egz()) <<"\n";
     }
     else{
         for (auto &&Stud : A)
-            cout << std::left << setw(20) << &Stud << setw(15) << Stud.name() << setw(15) << Stud.surname() 
-            << std::fixed << std::setprecision(2) << medianResult(Stud.nd(), Stud.egz()) << "\n";
+            cout << Stud << std::fixed << std::setprecision(2) << medianResult(Stud.nd(), Stud.egz()) << "\n";
     }
     cout << "-----------------------------------------------------------------\n";
 }
@@ -244,7 +242,7 @@ void userInterface(Container& A){
     char choice1, choice2;
     int n = 0;
     cout << "(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file\n"
-         << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n: ";
+         << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n(5) - Showcase use of operators\n: ";
     cin >> choice1;
     if (choice1 != '3') {
         cout << "Use average - (0) or median - (1) for result calculation: ";
@@ -300,6 +298,8 @@ void userInterface(Container& A){
             splitFile(A, calculationMethod, generateCount, sortType);
         }
         cout << " entries whole test time: " << t.elapsed() << "\n";
+    } else if (choice1 == '5') {
+        // cout << Stud;
     }
     else{
         char end;

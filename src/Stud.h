@@ -37,6 +37,15 @@ public:
     void setEgz(int egz) {
         egz_ = egz;
     }
+    
+    friend std::ostream& operator<<(std::ostream& os, const Stud& stud) {
+        os << std::left << setw(20) << &stud << setw(15) << stud.name_ << setw(15) << stud.surname_;
+        // for (int i : stud.nd_) {
+        //     os << i << " ";
+        // }
+        // os << ", EGZ: " << stud.egz_;
+        return os;
+    }
 };
 
 void input(Stud &Local, int n);
