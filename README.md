@@ -3,11 +3,19 @@ To use program you have to download CMake, then double click run.bat file, and t
 
 ## 1.1 version tests
 #### Speed tests with struct and class using 1st strategy and VECTOR container
-| Container | 100 000 | 1 000 000 |
+| Type      | 100 000 | 1 000 000 |
 | --------- | -------:| ---------:|
 | Class     | 1.7684  | 16.8388   |
 | Struct    | 1.4077  | 14.5906   |
-Structure seems to be a bit faster
+##### Structure seems to be a bit faster
+
+#### Speed tests with CLASS and different flags
+##### Using 1st strat and VECTOR. For reference previous CMake .exe size was 1006 KB.
+| Flag   | 100 000 | 1 000 000 | .exe size KB
+| ------ | -------:| ---------:| 
+| O1     | 0.7774  | 8.3225    | 288
+| O2     | 0.7595  | 8.1451    | 275
+| O3     | 0.7198  | 7.9818    | 267
 
 ## 1.0 version tests
 
