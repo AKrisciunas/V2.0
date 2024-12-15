@@ -1,10 +1,17 @@
 # Program that calculates students results
 To use program you have to download CMake, then double click run.bat file, and the program will generate obj_projektas.exe in Debug folder, which runs the program.
 
-## 1.1 version
+## 1.5 version
 
+##### Person abstract class, which Student is derived from
+
+## 1.2 version
+
+##### rule of three
 ##### cin ">>" input operator takes all student information at once
 ##### cout "<<" output operator returns pointer, name and surname of students
+
+## 1.1 version
 
 #### Speed tests with struct and class using 1st strategy and VECTOR container
 | Type      | 100 000 | 1 000 000 |
