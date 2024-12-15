@@ -7,46 +7,46 @@ extern int globalND; //global variable for students homework count
 
 class Person {
 protected:
-    std::string name_;
-    std::string surname_;
+    string name_;
+    string surname_;
 
 public:
     Person() : name_(""), surname_("") {}
 
-    Person(const std::string& name, const std::string& surname)
+    Person(const string& name, const string& surname)
         : name_(name), surname_(surname) {}
+    virtual ~Person() = default;
+    virtual void print() const = 0;
 
-    std::string name() const { return name_; }
-    std::string surname() const { return surname_; }
-    
-    virtual ~Person() {}
+    void setName(const std::string& name) { name_ = name; }
+    void setSurname(const std::string& surname) { surname_ = surname; }
+
+    inline string name() const { return name_; }
+    inline string surname() const { return surname_; }
 };
 
-class Stud{
+class Stud : public Person {
 private:
-    string name_;
-    string surname_;
-    vector<int> nd_;
+    std::vector<int> nd_;
     int egz_;
 public:
     // default constructor
-    Stud(): name_(""), surname_(""), nd_({}), egz_(0) {}
+    Stud(): Person(), nd_({}), egz_(0) {}
 
     // constructor
-    Stud(const std::string& name, const std::string& surname, const std::vector<int>& nd, int egz)
-        : name_(name), surname_(surname), nd_(nd), egz_(egz) {}
+    Stud(const string& name, const string& surname, const std::vector<int>& nd, int egz)
+        : Person(name, surname), nd_(nd), egz_(egz) {}
 
     // Copy constructor
-    Stud(const Stud& other) : name_(other.name_), surname_(other.surname_), nd_(other.nd_), egz_(other.egz_) {}
+    Stud(const Stud& other) : Person(other.name_, other.surname_), nd_(other.nd_), egz_(other.egz_) {}
 
     // copy assignment operator
     Stud& operator=(const Stud& other) {    
-        if (this != &other) {
-            name_ = other.name_;
-            surname_ = other.surname_;
-            nd_ = other.nd_;
-            egz_ = other.egz_;
-        }
+        if (this != &other) return *this;
+        name_ = other.name_;
+        surname_ = other.surname_;
+        nd_ = other.nd_;
+        egz_ = other.egz_;
         return *this;
     }
 
@@ -56,15 +56,13 @@ public:
     }
     
     // getters
-    string& name() { return name_; }
-    string& surname() { return surname_; }
-    vector<int>& nd() { return nd_; }
+    std::vector<int>& nd() { return nd_; }
     double egz() { return egz_; }
     // setters
-    void setName(std::string name) {
+    void setName(string name) {
         name_ = name;
     }
-    void setSurname(std::string surname) {
+    void setSurname(string surname) {
         surname_ = surname;
     }
     void setNd(std::vector<int> nd) {
@@ -76,18 +74,19 @@ public:
     // operators
     friend std::istream& operator>>(std::istream& is, Stud& stud);
     friend std::ostream& operator<<(std::ostream& os, const Stud& stud) {
-        os << std::left << setw(20) << &stud << setw(15) << stud.name_ << setw(15) << stud.surname_;
+        os << std::left << std::setw(20) << &stud << std::setw(15) << stud.name_ << std::setw(15) << stud.surname_;
         // for (int i : stud.nd_) {
         //     os << i << " ";
         // }
         // os << ", EGZ: " << stud.egz_;
         return os;
     }
+    void print() const override{cout << *this;}
 };
 
 void inputRandom(Stud &Local, int n);
-double averageResult( vector<int> nd, int egz);
-double medianResult( vector<int> nd, int egz);
+double averageResult(std::vector<int> nd, int egz);
+double medianResult(std::vector<int> nd, int egz);
 bool compareStud(Stud &a, Stud &b);
 bool compareStudSurname(Stud &a, Stud &b);
 bool compareStudAverage(Stud &a, Stud &b);
@@ -96,3 +95,4 @@ bool averageAt5(Stud &a);
 bool medianAt5(Stud &a);
 
 #endif
+
