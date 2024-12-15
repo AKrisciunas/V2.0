@@ -304,14 +304,18 @@ void userInterface(Container& A){
     else{
         char end;
         while (true){
-            cout<<"Input Name: ";
-            cin >> S.name();
-            cout <<"Surname: ";
-            cin >> S.surname();
-            if(choice1 == '1')
+            
+            if(choice1 == '1'){
+                cout<<"Input Name: ";
+                cin >> S.name();
+                cout <<"Surname: ";
+                cin >> S.surname();
                 inputRandom(S, n);
-            else 
-                input(S, n);
+            }
+            else {
+                globalND = n;
+                cin>>S;
+            }
             A.push_back(S);   
             cout<<"Type (0) if you wish to stop, type (1) to continue: ";
             cin>>end;

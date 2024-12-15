@@ -37,7 +37,25 @@ public:
     void setEgz(int egz) {
         egz_ = egz;
     }
+    Stud& operator=(const Stud& other) {
+        if (this != &other) {
+            name_ = other.name_;
+            surname_ = other.surname_;
+            nd_ = other.nd_;
+            egz_ = other.egz_;
+        }
+        return *this;
+    }
     
+    // friend std::istream& operator>>(std::istream& is, Stud& stud) {
+    //     is >> stud.name_ >> stud.surname_;
+    //     for (int i = 0; i < globalND; ++i) {
+    //         is >> stud.nd_[i];
+    //     }
+    //     is >> stud.egz_;
+    //     return is;
+    // }
+    friend std::istream& operator>>(std::istream& is, Stud& stud);
     friend std::ostream& operator<<(std::ostream& os, const Stud& stud) {
         os << std::left << setw(20) << &stud << setw(15) << stud.name_ << setw(15) << stud.surname_;
         // for (int i : stud.nd_) {

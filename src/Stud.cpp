@@ -12,29 +12,38 @@ bool inputInteger(int& value) {
     return true;
 }
 
-void input(Stud& Local, int n) {
-    int temp;
-    for (int i = 0; i < n; i++)
-    {
+std::istream& operator>>(std::istream& is, Stud& stud) {
+        int temp;
+        vector<int> nd;
+        cout << "Name: ";
+        is >> stud.name_;
+        cout << "Surname: ";
+        is >> stud.surname_;
+
+        for (int i = 0; i < globalND; ++i) {
+            while (true) {
+                std::cout << "Homework " << (i + 1) << ": ";
+                if (inputInteger(temp)) {
+                    nd.push_back(temp);
+                    break;
+                } else {
+                    std::cout << "Invalid input. Please enter a number." << std::endl;
+                }
+            }
+        }
+        stud.nd_ = nd;
+
         while (true) {
-            std::cout << "Homework " << (i + 1) << ": ";
+            std::cout << "Exam: ";
             if (inputInteger(temp)) {
-                Local.setNd(std::vector<int>(1, temp));
+                stud.egz_ = temp;
                 break;
             } else {
                 std::cout << "Invalid input. Please enter a number." << std::endl;
             }
         }
-    }
-    cout << "Exam: ";
-    while (true) {
-        if (inputInteger(temp)) {
-            Local.setEgz(temp); 
-            break;
-        } else {
-            cout << "Invalid input. Please enter a number.\n"; 
-        }
-    }
+
+        return is;
 }
 
 void inputRandom(Stud& Local, int n) {
