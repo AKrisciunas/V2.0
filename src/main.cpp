@@ -242,7 +242,7 @@ void userInterface(Container& A){
     char choice1, choice2;
     int n = 0;
     cout << "(0) - Input information yourself \n(1) - Generate random homework and exam points \n(2) - Read data from file\n"
-         << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n(5) - Showcase use of operators\n: ";
+         << "(3) - Generate random data to file \n(4) - Split file into 2, based on results\n(5) - Showcase rule of three\n: ";
     cin >> choice1;
     if (choice1 != '3') {
         cout << "Use average - (0) or median - (1) for result calculation: ";
@@ -299,7 +299,22 @@ void userInterface(Container& A){
         }
         cout << " entries whole test time: " << t.elapsed() << "\n";
     } else if (choice1 == '5') {
-        // cout << Stud;
+        globalND = n;
+        cin >> S;
+        cout << std::left << setw(30) << "cin: "<< S << "\n";
+
+        Stud stud2(S);
+        cout << setw(30) << "copy constructor: " << stud2 << "\n";
+
+        Stud stud3;
+        stud3 = S;
+        cout << setw(30) << "copy assignment operator: " << stud3 << "\n";
+        Stud stud4;
+        {
+            Stud stud4("Vardas", "Pavarde", {1, 2, 3}, 4);
+            cout << "Before destructor: " << stud4 << "\n";
+        }
+        cout << "After destructor: " << stud4 << "\n";
     }
     else{
         char end;
