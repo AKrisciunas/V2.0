@@ -299,6 +299,9 @@ void userInterface(Container& A){
         }
         cout << " entries whole test time: " << t.elapsed() << "\n";
     } else if (choice1 == '5') {
+        // Person P("Vardas", "Pavarde");
+        // cant create Person object, because it is abstract class
+
         globalND = n;
         cin >> S;
         cout << std::left << setw(30) << "cin: "<< S << "\n";
@@ -319,12 +322,14 @@ void userInterface(Container& A){
     else{
         char end;
         while (true){
-            
             if(choice1 == '1'){
                 cout<<"Input Name: ";
-                cin >> S.name();
+                string name, surname;
+                cin >> name;
+                S.setName(name);
                 cout <<"Surname: ";
-                cin >> S.surname();
+                cin >> surname;
+                S.setSurname(surname);
                 inputRandom(S, n);
             }
             else {
