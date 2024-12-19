@@ -1,8 +1,7 @@
 # Program that calculates students results
 
 ## Program setup
-
--launch setup.exe and follow further instructions
+- launch setup.exe and follow further instructions (version 3.0 addition)
 
 - or download CMake, then double click run.bat file, and the program will generate obj_projektas.exe in Debug folder, which runs the program.
 
